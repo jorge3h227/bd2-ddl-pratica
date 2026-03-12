@@ -1,20 +1,22 @@
 USE universidade;
 
-CREATE TABLE alunos (
-    id INT PRIMARY KEY,
-    nome VARCHAR(100),
-    data_nascimento DATE,
-    email VARCHAR(200) UNIQUE
-    telefone varchar(20)
-
-    
+CREATE TABLE `alunos` (
+  `id` int NOT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 );
 
-CREATE TABLE matriculas (
-    id INT PRIMARY KEY,
-    curso VARCHAR(150),
-    data_matricula DATE,
-    aluno_id INT KEY `fk_matricula_aluno` (`aluno_id`),
+CREATE TABLE `matriculas` (
+  `id` int NOT NULL,
+  `curso` varchar(150) DEFAULT NULL,
+  `data_matricula` date DEFAULT NULL,
+  `aluno_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_matricula_aluno` (`aluno_id`),
   CONSTRAINT `fk_matricula_aluno` FOREIGN KEY (`aluno_id`) REFERENCES `alunos` (`id`)
 );
 
